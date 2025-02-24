@@ -143,6 +143,13 @@ li {
   transition: opacity 0.3s ease;
 }
 
+/* Keep the transparent navbar for the home page */
+#introNavbar {
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Navbar light text styling */
 .navbar-light-text .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.9) !important;
 }
@@ -157,6 +164,49 @@ li {
 
 .navbar, .navbar-nav .nav-link {
   transition: all 0.3s ease-in-out;
+}
+
+/* Collapsed navbar styling */
+@media screen and (max-width: 768px) {
+  /* This makes the dropdown transparent like the main navbar */
+  #introNavbar .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Keep the text white in the transparent dropdown */
+  #introNavbar .navbar-collapse .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  #introNavbar .navbar-collapse .nav-link:hover {
+    color: white !important;
+  }
+  
+  #introNavbar .navbar-collapse .nav-item.active .nav-link {
+    color: white !important;
+    font-weight: bold;
+  }
+  
+  /* For other navbars (non-transparent ones) */
+  .navbar-light .navbar-collapse {
+    background-color: #f8f9fa !important;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .navbar-light .navbar-collapse .nav-link {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  .navbar-light .navbar-collapse .nav-link:hover {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .navbar-light .navbar-collapse .nav-item.active .nav-link {
+    color: rgba(0, 0, 0, 0.9) !important;
+  }
 }
 
 .page-bg {
