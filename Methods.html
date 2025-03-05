@@ -73,13 +73,27 @@
     </div>
 
     <div class="content-card-wrapper">
-        <div class="card">
-            <div class="card-body">
-            <h2 class="card-title text-center">Sentiment Analysis Module</h2>
-            <p>content here...</p>
-            </div>
-        </div>
-    </div>
+      <div class="card">
+          <div class="card-body">
+              <h2 class="card-title text-center">Sentiment Analysis Module</h2>
+              <p><strong>Model:</strong> FinBERT - Specialized NLP model for financial text sentiment analysis.</p>
+  
+              <p><strong>Data Collection & Pre-processing:</strong></p>
+              <ul>
+                  <li>AMZN, GOOG, CVS GitHub Tweet Dataset (June 2020 - May 2023).</li>
+                  <li>Collected Reddit posts and comments for additional sentiment data via API.</li>
+                  <li>Applied time-scaled linear interpolation for data smoothing.</li>
+              </ul>
+  
+              <p><strong>Sentiment Scoring:</strong> Weighted FinBERT confidence levels with normalization to 0-1 range.</p>
+  
+              <div class="image-container text-center">
+                  <img src="images/Sentiment_work_flow.png" alt="Work Flow of Sentiment Analysis Module" style="width: 100%;">
+                  <p><em>Work Flow of Sentiment Analysis Module</em></p>
+              </div>
+          </div>
+      </div>
+  </div>
 
     <div class="content-card-wrapper">
         <div class="card">
