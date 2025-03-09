@@ -99,8 +99,19 @@
         <div class="card">
             <div class="card-body">
             <h2 class="card-title text-center">Economic Impact Analysis Module</h2>
-            <p>content here...</p>
-            </div>
+                <div class="text-center">
+                    <img src="figure/economic_impact_flowchart.png" alt="Economic Impact Framework">
+                </div>
+
+                <h5>Data Collection</h5>
+                <ul>
+                    <p> To fully capture the  economic impact on stock returns, we gathered data from two different sources
+                    <li><strong>Microeconomic Data:</strong> Quarterly company reports (balance sheet, cash flow).</li>
+                    <li><strong>Macroeconomic Indicators:</strong> Monthly Economic data (CPI, GDP).</li>
+                </ul>
+
+                <h5>Frequency Alignment</h5>
+                <p>To align these datasets, we mapped quarterly stock returns from daily price data and decomposed macroeconomic indicators into three monthly observations per quarter. Using OLS regression, we identified the most statistically relevant monthly indicator for each quarter. Finally, we merged company financial data with the selected macroeconomic features, ensuring temporal consistency for predictive modeling.</p>
         </div>
     </div>
       
