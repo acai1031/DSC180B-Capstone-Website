@@ -113,14 +113,14 @@
             </div>
             <div class="col-sm-7 col-md-8 col-lg-8 mt-5">
               <header>
-                    <p>we propose an <strong>advanced stock return prediction framework</strong> that integrates
+                    <p>We propose an <strong>advanced stock return prediction framework</strong> that integrates
                         <strong>PCMCI (Peter and Clark Momentary Conditional Independence)</strong>, a causal discovery algorithm, with <strong>DeepAR</strong> to enhance both interpretability and accuracy. Our approach leverages
                         PCMCI for causal structure discovery in our multivariate time-series data, identifying true
-                        causal relationships rather than relying on correlations. 
+                        causal relationships rather than relying on correlations. The model takes in two parts of data: past stock data and tweet sentiment data.
                     </p>
                     <p>
-                      <ol type="1">
                       The approach involve two steps: 
+                      <ol type="1">
                      <li>
                         Feature Selection based on causal relevance to filters out spurious correlations and retains
                         the most influential factors, ensuring the simplicity of model for integrability 
@@ -131,8 +131,10 @@
                       </li>
                       </ol>
                     </p>
-                    <p>Additionally, we incorporate external economic factors at varying granularities using a economic impact
-                    model. By integrating causal inference techniques with deep learning and forecasting models,
+                    <p>Additionally, we incorporate external economic factors at varying granularities using a <strong>economic impact
+                    model</strong>. 
+                      
+                    By integrating causal inference techniques with deep learning and forecasting models,
                     our framework bridges the gap between predictive power, interpretability, and data availability lag, making advanced stock forecasting more reliable and transparent for investors.
                     </p>
               </header>
