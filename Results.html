@@ -87,16 +87,51 @@
             <p class="text-center"><strong>Figure:</strong> Sentiment Score Distribution of Stocks</p>
         </div>
       </div>
-  </div>
+    </div>
   
 
     <div class="content-card-wrapper">
-        <div class="card">
-            <div class="card-body">
-            <h2 class="card-title text-center">DeepAR</h2>
-            <p>content here...</p>
-            </div>
-        </div>
+      <div class="card">
+          <div class="card-body">
+              <h2 class="card-title text-center">Model Performance Comparison</h2>
+              
+              <h5>Overall Performance Across Companies</h5>
+              <p>
+                  Our evaluation shows that both models have their strengths depending on the company and market conditions:
+              </p>
+              <ul>
+                  <li><strong>DeepAR excels with:</strong> ABT, AT&T, AMGN, and CVS (better error metrics)</li>
+                  <li><strong>Fusion Layer performs better with:</strong> AMZN and GOOG (lower prediction errors)</li>
+                  <li><strong>Direction accuracy:</strong> Fusion Layer achieved 100% for ABT and AMZN, while DeepAR reached 100% for AMGN and CVS</li>
+                  <li><strong>Notable case:</strong> For CVS, DeepAR significantly outperformed with 100% direction accuracy vs Fusion's 25%</li>
+              </ul>
+              <img src="images/performance_table.png" alt="Performance metrics comparison table">
+          
+              
+              <h5>Forward Prediction Visualization</h5>
+              <p>
+                  The 5-day forward predictions reveal interesting patterns for different companies:
+              </p>
+              <img src="images/amzn_compare.png" alt="amazon comparison plot">
+              <img src="images/cvs_compare.png" alt="cvs comparison plot">
+              
+              
+              <p>
+                  Both models predict a downward trend for Amazon, but the Fusion Layer tracks closer to actual values in early days before diverging.
+                  Models show opposing predictions for CVS: DeepAR correctly forecasts a downward movement while Fusion Layer incorrectly predicts an upward trend.
+              </p>
+              
+              <h5 class="mt-4">Key Takeaways</h5>
+              <p>
+                  Our evaluation reveals that neither model consistently outperforms the other across all companies and metrics:
+              </p>
+              <ul>
+                  <li><strong>DeepAR strengths:</strong> More consistent prediction accuracy, particularly strong with healthcare stocks (ABT, AMGN, CVS)</li>
+                  <li><strong>Fusion Layer strengths:</strong> Better performance with tech companies (AMZN, GOOG), excellent direction accuracy for certain stocks</li>
+                  <li><strong>Practical application:</strong> A hybrid approach using both models with company-specific weighting could yield optimal results</li>
+              </ul>
+          </div>
+      </div>
     </div>
 
     <!-- Scripts -->

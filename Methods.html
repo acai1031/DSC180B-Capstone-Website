@@ -74,55 +74,159 @@
 
     <div class="content-card-wrapper">
       <div class="card">
-          <div class="card-body">
+        <div class="card-body">
               <h2 class="card-title text-center">Sentiment Analysis Module</h2>
-              <p><strong>Model:</strong> FinBERT - Specialized NLP model for financial text sentiment analysis.</p>
+              <h5>Model</h5> 
+              <p> <a href="https://huggingface.co/ProsusAI/finbert">FinBERT</a> - Specialized NLP model for financial text sentiment analysis.</p>
   
-              <p><strong>Data Collection & Pre-processing:</strong></p>
+              <h5>Data Collection & Pre-processing</h5>
               <ul>
-                  <li>AMZN, GOOG, CVS GitHub Tweet Dataset (June 2020 - May 2023).</li>
-                  <li>Collected Reddit posts and comments for additional sentiment data via API.</li>
+                  <li>AMZN, GOOG, CVS <a href="https://github.com/hao1zhao/Bigdata23/tree/main/tweet">GitHub Tweet Dataset</a> (June 2020 - May 2023).</li>
+                  <li>Collected Reddit posts and comments for additional sentiment data via <a href="https://www.reddit.com/dev/api/">Reddit API</a>.</li>
                   <li>Applied time-scaled linear interpolation for data smoothing.</li>
               </ul>
   
-              <p><strong>Sentiment Scoring:</strong> Weighted FinBERT confidence levels with normalization to 0-1 range.</p>
+              <h5>Sentiment Scoring</h5>
+              <p> Weighted FinBERT confidence levels with normalization to 0-1 range.</p>
   
               <div class="image-container text-center">
                   <img src="images/Sentiment_work_flow.png" alt="Work Flow of Sentiment Analysis Module" style="width: 100%;">
                   <p><em>Work Flow of Sentiment Analysis Module</em></p>
               </div>
-          </div>
+         </div>
       </div>
-  </div>
+    </div>
 
     <div class="content-card-wrapper">
         <div class="card">
             <div class="card-body">
-            <h2 class="card-title text-center">Economic Impact Analysis Module</h2>
-                <div class="text-center">
-                    <img src="images/economic_impact_flowchart.png" alt="Economic Impact Framework">
-                </div>
+                <h2 class="card-title text-center">Economic Impact Analysis Module</h2>
+                    <div class="text-center">
+                        <img src="images/economic_impact_flowchart.png" alt="Economic Impact Framework">
+                    </div>
 
-                <h5>Data Collection</h5>
-                    <p>To fully capture the  economic impact on stock returns, we gathered data from two different sources</p>
-                <ul>
-                    <li><strong>Microeconomic Data:</strong> Quarterly company reports (balance sheet, cash flow).</li>
-                    <li><strong>Macroeconomic Indicators:</strong> Monthly Economic data (CPI, GDP).</li>
-                </ul>
+                    <h5>Data Collection</h5>
+                        <p>To fully capture the  economic impact on stock returns, we gathered data from two different sources</p>
+                    <ul>
+                        <li><strong>Microeconomic Data:</strong> Quarterly company reports (balance sheet, cash flow).</li>
+                        <li><strong>Macroeconomic Indicators:</strong> Monthly Economic data (CPI, GDP).</li>
+                    </ul>
 
-                <h5>Frequency Alignment</h5>
-                <p>The key challenge arises from the inherent discrepancy in temporal granularity:macroeconomic and microeconomic indicators are typically reported on a monthly basis,
-while corporate financial statements adhere to a quarterly reporting cycle. To align these datasets, we mapped quarterly stock returns from daily price data and decomposed macroeconomic indicators into three monthly observations per quarter. Using OLS regression, we identified the most statistically relevant monthly indicator for each quarter. Finally, we merged company financial data with the selected macroeconomic features, ensuring temporal consistency for predictive modeling.</p>
+                    <h5>Frequency Alignment</h5>
+                    <p>The key challenge arises from the inherent discrepancy in temporal granularity:macroeconomic and microeconomic indicators are typically reported on a monthly basis, 
+                      while corporate financial statements adhere to a quarterly reporting cycle. To align these datasets, we mapped quarterly stock returns from daily price data and 
+                      decomposed macroeconomic indicators into three monthly observations per quarter. Using OLS regression, we identified the most statistically relevant monthly 
+                      indicator for each quarter. Finally, we merged company financial data with the selected macroeconomic features, ensuring temporal consistency for predictive modeling.
+                    </p>
+              </div>
         </div>
     </div>
       
     <div class="content-card-wrapper">
-        <div class="card">
-            <div class="card-body">
-            <h2 class="card-title text-center">Stock Return Prediction Module</h2>
-            <p>content here...</p>
-            </div>
-        </div>
+      <div class="card">
+          <div class="card-body">
+              <h2 class="card-title text-center">Stock Return Prediction Module</h2>
+              <p>
+                  Our stock prediction system is designed to model uncertainty in the market. Unlike traditional models that only 
+                  provide a single prediction, we generate a range of possible outcomes with their probabilities - similar to how 
+                  experienced investors think about market risks.
+              </p>
+                  
+              <h5>Data Collection & Pre-processing</h5>
+              <p>
+                  We collect historical data of 6 companies (3 Tech, 3 Healthcare) via <a href="https://yfinance-python.org/">Yahoo Finance API</a> 
+                  from Jun 2020 to Feb 2025, including daily metrics of opening/closing price, high, low, and volume. Our dataset contains 
+                  1,190 trading days per company, totaling 7,140 records, capturing both stable and volatile market periods. We calculate Daily return as:
+              <div class="formula text-center">
+                  R<sub>t</sub> = (P<sub>t</sub> - P<sub>t-1</sub>) / P<sub>t-1</sub>
+              </div>
+                  
+              <h5>Causal Feature Selection</h5>
+              <p>
+                  Applied <a href="https://jakobrunge.github.io/tigramite/">PCMCI+ algorithm</a> for causal feature selection, identifying 8 key covariates based on their causal impacts.
+                  This advanced technique helps us distinguish true causal relationships from mere correlations, focusing on factors that actually drive stock returns:
+              </p>
+              <ul>
+                  <li><strong>Price-Based Features:</strong> Close price and trading volume</li>
+                  <li><strong>Technical Indicators:</strong> MA5 deviation, MACD with lag-2, intraday returns, volatility measures</li>
+                  <li><strong>Time-Based Features:</strong> Calendar effects (weekday and month patterns)</li>
+                  <li><strong>External Features:</strong> Sentiment scores from market news and social media</li>
+              </ul>
+              <img src="images/feature_relationship.png" alt="pcmci_plus_feature_selection">
+              <p><small>The causal structure above shows which factors truly influence stock returns, with stronger connections indicating stronger causal effects</small></p>
+                  
+              <h5>Model Architecture</h5>
+              <p>
+                  Our model is based on the DeepAR (Deep Auto-Regressive) architecture, which combines deep learning with probabilistic forecasting. 
+                  This approach is particularly well-suited for financial time series where uncertainty quantification is crucial.
+              </p>
+              <p>
+                  The model integrates historical returns, technical indicators, and entity embeddings into a concatenated
+                  input tensor. An enhanced LSTM with skip connections and variational dropout enables robust gradient flow.
+                  The probabilistic output layer generates a Gaussian distribution of future returns, instead of just point estimates.
+              </p>
+              <p>
+                  Key improvements in our architecture include:
+              </p>
+              <ul>
+                  <li><strong>Orthogonal Weight Initialization:</strong> Ensures stable gradient flow during training</li>
+                  <li><strong>Variational Dropout (15%):</strong> Prevents overfitting while preserving time series patterns</li>
+                  <li><strong>Skip Connections:</strong> Allow the model to leverage both raw and processed features</li>
+                  <li><strong>Hierarchical Structure:</strong> Captures both short-term fluctuations and long-term trends</li>
+              </ul>
+              <img src="images/deepar_model.png" alt="deepar_model">
+              <p><small>The model processes historical data through specialized layers to produce probability distributions of future returns</small></p>
+          </div>
+      </div>
+    </div>
+
+    <div class="content-card-wrapper">
+      <div class="card">
+          <div class="card-body">
+              <h2 class="card-title text-center">Fusion Layer</h2>
+              <img src="images/fusion_layer.png" alt="fusion_layer">
+              <p>
+                  To address the limitations of pure time series models and incorporate broader market context, we develop a fusion layer that combines DeepAR predictions with financial 
+                  and macroeconomic indicators. This approach allows us to refine the primary model's predictions by accounting for fundamental factors that affect stock price movements 
+                  but may not be fully captured in the historical price patterns alone.
+              </p>
+              
+              <h5>How It Works</h5>
+              <p>
+                  Our fusion layer integrates two complementary data sources:
+              </p>
+              <ul>
+                  <li><strong>Time Series Predictions:</strong> Outputs from our DeepAR model, including predictions, actual values, and error metrics</li>
+                  <li><strong>Quarterly Financial Data:</strong> Company fundamentals like revenue, profit margins, and balance sheet metrics</li>
+              </ul>
+              <p>
+                  By combining high-frequency market data with lower-frequency fundamental indicators, we create a more comprehensive view of stock behavior than either approach alone could provide.
+              </p>
+              
+              <h5>Key Features Used</h5>
+              <p>
+                  The fusion layer analyzes multiple dimensions of market behavior:
+              </p>
+              <ul>
+                  <li><strong>Technical Features:</strong> Rolling averages of predictions and errors (3, 7, and 14-day windows)</li>
+                  <li><strong>Fundamental Features:</strong> Financial ratios like profit margins and year-over-year growth rates</li>
+                  <li><strong>Temporal Features:</strong> Calendar patterns capturing seasonal market behavior</li>
+                  <li><strong>Volatility Indicators:</strong> Recent market volatility measurements to adjust prediction confidence</li>
+              </ul>
+              
+              <h5>Adaptive Prediction Blending</h5>
+              <p>
+                  Rather than simply replacing our DeepAR predictions, the fusion layer implements a dynamic blending approach that adjusts based on market conditions:
+              </p>
+              <ul>
+                  <li>During normal market conditions: 60% weight to fusion model, 40% to DeepAR</li>
+                  <li>During high volatility periods: 40% weight to fusion model, 60% to DeepAR</li>
+              </ul>
+              <p>
+                  This adaptive strategy recognizes that deep learning models (DeepAR) often perform better during volatile periods, while ensemble methods excel in more stable markets.
+              </p>
+          </div>
+      </div>
     </div>
 
     <!-- Scripts -->
