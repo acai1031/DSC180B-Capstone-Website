@@ -66,7 +66,10 @@
         <div class="card">
           <div class="card-body">
             <h2 class="card-title text-center">Overview</h2>
-            <p>content here...</p>
+            <p>Our framework consists of three branches, integrating features from diverse sources, including historical stock prices, macro- and microeconomic factors, and Reddit posts to capture market sentiment.</p>
+            <p>For the first branch, we obtained economic indicators from FRED and Alpha Vantage. Using all available features, we applied CDNOD to learn the underlying causal relationships and select those with a significant impact on a company's closing price. After feature selection, we aligned the frequency of company-level and macroeconomic data through hypothesis testing to enhance external shock prediction.</p>
+            <p>For the second branch, we obtained historical stock data from the Yahoo Finance API. Using PCMCI+ for feature selection and lag optimization, we refined decision-making to better capture long-term stock trends based on historical patterns.</p>
+            <p>For the third branch, we obtained posts from the Reddit API and used FinBERT to generate daily sentiment scores for each company. The resulting sentiment scores were then integrated into DeepAR to enhance daily trend analysis.</p>
             <img src="images/Flowchart.png" alt="project structure overview">
           </div>
         </div>
