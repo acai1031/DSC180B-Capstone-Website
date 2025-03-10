@@ -121,6 +121,14 @@
                       decomposed macroeconomic indicators into three monthly observations per quarter. Using OLS regression, we identified the most statistically relevant monthly 
                       indicator for each quarter. Finally, we merged company financial data with the selected macroeconomic features, ensuring temporal consistency for predictive modeling.
                     </p>
+                    <h5>Feature selection through CDNOD</h5>
+                    <p>After interpolating economic factors with daily stock prices, we applied CD-NOD with monthly
+                      grouping and Fisher's Z-test at a 0.01 significance level to capture causal relationships
+                      between factors and stock price shocks.
+                      Defining impactful features</p>
+                      <p>• have a direct edge to stock price.</p>
+                      <p>• connect to stock price through causal pathways in the learned graph.</p>
+                    </p>
               </div>
         </div>
     </div>
